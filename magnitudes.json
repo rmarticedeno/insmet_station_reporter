@@ -1,0 +1,82 @@
+[
+    {
+        "Id": 1,
+        "Name": "Velocidad del viento",
+        "Unit": "m/s"
+    },
+    {
+        "Id": 2,
+        "Name": "Dirección del viento",
+        "Unit": "°"
+    },
+    {
+        "Id": 3,
+        "Name": "Temperatura del aire",
+        "Unit": "°C"
+    },
+    {
+        "Id": 4,
+        "Name": "Humedad relativa",
+        "Unit": "%"
+    },
+    {
+        "Id": 5,
+        "Name": "Presión atmosférica",
+        "Unit": "hPa"
+    },
+    {
+        "Id": 6,
+        "Name": "Radiación solar",
+        "Unit": "W/m²"
+    },
+    {
+        "Id": 7,
+        "Name": "Precipitación",
+        "Unit": "mm"
+    },
+    {
+        "Id": 8,
+        "Name": "Temperatura de punto de rocío",
+        "Unit": "°C"
+    },
+    {
+        "Id": 9,
+        "Name": "Presión al nivel de la estación",
+        "Unit": "hPa"
+    },
+    {
+        "Id": 10,
+        "Name": "Presión al nivel medio del mar",
+        "Unit": "hPa"
+    },
+    {
+        "Id": 11,
+        "Name": "Presión de vapor de agua",
+        "Unit": "hPa"
+    },
+    {
+        "Id": 12,
+        "Name": "Presión de saturación de vapor de agua",
+        "Unit": "hPa"
+    },
+    {
+        "Id": 13,
+        "Name": "Temperatura de enfriamiento",
+        "Unit": "°C"
+    },
+    {
+        "Id": 14,
+        "Name": "Índice de calor",
+        "Unit": "°C"
+    },
+    {
+        "Id": 15,
+        "Name": "Temperatura perceptible",
+        "Unit": "°C"
+    },
+    {
+        "Id": 16,
+        "Name": "Voltaje de la batería",
+        "Unit": "V"
+    }
+]
