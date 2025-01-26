@@ -18,17 +18,17 @@ def PostTelegramMessage(message: str, topic_id: str = None):
 def getConnectionString(db:str):
     return f'DRIVER={{ODBC Driver 18 for SQL Server}};SERVER={ADDR};DATABASE={db};UID={USER};PWD={PASS};TrustServerCertificate=yes'
 
-def checkValidity(cursor, db, type):
-    sqlcheck = f"""SELECT modify_date
-    FROM "{db}"."sys"."objects"
-    WHERE "type" IN ('P', 'U', 'V', 'TR', 'FN', 'TF', 'IF')
-    AND name = '{type}';"""
+def checkValidity(cursor, type):
+    sqlcheck = f"""SELECT last_user_update
+        FROM   sys.dm_db_index_usage_stats
+        WHERE  database_id = db_id()
+        AND object_id = object_id('{type}')"""
 
     cursor.execute(sqlcheck)
     value = cursor.fetchall()[0]
     
     offset = datetime.timedelta(hours=5)
-    difference = datetime.datetime.utcnow() - offset - value
+    difference = datetime.datetime.now(datetime.timezone.utc) - offset - value.last_user_update
 
     return difference.seconds < 60
     offset = datetime.timedelta(hours=5)
@@ -61,7 +61,7 @@ WHERE CurrentTime = (
     FROM dbo.MaxValue
 )
 """
-    getReportValues(db, topicId, query, 'Valores Máximos', lambda x: checkValidity(x, db, 'MaxValue'))
+    getReportValues(db, topicId, query, 'Valores Máximos', lambda x: checkValidity(x,'dbo.MaxValue'))
 
 def getMinValueReport(db: str, topicId: str):
     query = """
@@ -72,7 +72,7 @@ WHERE CurrentTime = (
     FROM dbo.MinValue
 )
 """
-    getReportValues(db, topicId, query, 'Valores Mínimos', lambda x: checkValidity(x, db, 'MinValue'))
+    getReportValues(db, topicId, query, 'Valores Mínimos', lambda x: checkValidity(x, 'dbo.MinValue'))
 
 def getMeanValueReport(db: str, topicId: str):
 
@@ -84,4 +84,4 @@ WHERE EndTime = (
     FROM dbo.MeanValue
 )
 """
-    getReportValues(db, topicId, query, 'Valores Promedio', lambda x: checkValidity(x, db, 'MeanValue'))
+    getReportValues(db, topicId, query, 'Valores Promedio', lambda x: checkValidity(x, 'dbo.MeanValue'))
