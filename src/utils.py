@@ -18,25 +18,7 @@ def PostTelegramMessage(message: str, topic_id: str = None):
 def getConnectionString(db:str):
     return f'DRIVER={{ODBC Driver 18 for SQL Server}};SERVER={ADDR};DATABASE={db};UID={USER};PWD={PASS};TrustServerCertificate=yes'
 
-def checkValidity(cursor, type):
-    sqlcheck = f"""SELECT last_user_update
-        FROM   sys.dm_db_index_usage_stats
-        WHERE  database_id = db_id()
-        AND object_id = object_id('{type}')"""
-
-    cursor.execute(sqlcheck)
-    value = cursor.fetchall()[0]
-    
-    offset = datetime.timedelta(hours=5)
-    difference = datetime.datetime.utcnow() - offset - value.last_user_update
-
-    return difference.seconds < 60
-    offset = datetime.timedelta(hours=5)
-    difference = datetime.datetime.utcnow() - offset - row.EndTime
-    
-    return difference.seconds < 60
-
-def getReportValues(db: str, topicId: str, query: str, report_name: str, check = None):
+def getReportValues(db: str, topicId: str, query: str, report_name: str):
     report = Report(report_name)
 
     conn = pyodbc.connect(getConnectionString(db))
@@ -45,9 +27,6 @@ def getReportValues(db: str, topicId: str, query: str, report_name: str, check =
     records = cursor.fetchall()
     for r in records:
         report.update_magnitude(r.MagnitudeId, r.Value)
-    
-    if check is not None and not check(cursor):
-        return
 
     PostTelegramMessage(str(report), topicId)
 
@@ -61,7 +40,7 @@ WHERE CurrentTime = (
     FROM dbo.MaxValue
 )
 """
-    getReportValues(db, topicId, query, 'Valores Máximos', lambda x: checkValidity(x,'dbo.MaxValue'))
+    getReportValues(db, topicId, query, 'Valores Máximos')
 
 def getMinValueReport(db: str, topicId: str):
     query = """
@@ -72,7 +51,7 @@ WHERE CurrentTime = (
     FROM dbo.MinValue
 )
 """
-    getReportValues(db, topicId, query, 'Valores Mínimos', lambda x: checkValidity(x, 'dbo.MinValue'))
+    getReportValues(db, topicId, query, 'Valores Mínimos')
 
 def getMeanValueReport(db: str, topicId: str):
 
@@ -84,4 +63,4 @@ WHERE EndTime = (
     FROM dbo.MeanValue
 )
 """
-    getReportValues(db, topicId, query, 'Valores Promedio', lambda x: checkValidity(x, 'dbo.MeanValue'))
+    getReportValues(db, topicId, query, 'Valores Promedio')
