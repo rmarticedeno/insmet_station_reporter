@@ -15,205 +15,205 @@
         "name": "Colon",
         "db": "colon-huatron",
         "topic": "664",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Playa Girón",
         "db": "playagiron-thies",
         "topic": "666",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "El Yabu",
         "db": "elyabu-huatron",
         "topic": "668",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Estacion DLU",
         "db": "pasorealdesandiego-thies",
         "topic": "670",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Bolivia",
         "db": "bolivia-thies",
         "topic": "672",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Florencia",
         "db": "florencia-thies",
         "topic": "674",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Primero de Enero",
         "db": "primerodeenero-thies",
         "topic": "676",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Cayo Sabinal",
         "db": "cayosabinal-thies",
         "topic": "678",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Cayo Coco",
         "db": "cayococo-thies",
         "topic": "680",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Isabel Rubio",
         "db": "isabelrubio-huatron",
         "topic": "682",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "La Guira",
         "db": "laguira-thies",
         "topic": "684",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Nuevitas",
         "db": "nuevitas-huatron",
         "topic": "686",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Santa Cruz Del Sur",
         "db": "santacruzdelsur-huatron",
         "topic": "688",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Jucaro",
         "db": "jucaro-huatron",
         "topic": "690",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Venezuela",
         "db": "venezuela-huatron",
         "topic": "692",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Punta del Este",
         "db": "puntadeleste-varoos",
         "topic": "694",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Santa Fe",
         "db": "santafe-huatron",
         "topic": "696",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Amistad Cuba Francia",
         "db": "amistadcubafrancia-huatron",
         "topic": "698",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Mariel",
         "db": "mariel-varoos",
         "topic": "700",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Batabano",
         "db": "batabano-sutron",
         "topic": "702",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Sancti Spiritus",
         "db": "sanctispiritus-thies",
         "topic": "704",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Trinidad",
         "db": "trinidad-huatron",
         "topic": "706",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Jibaro",
         "db": "jibaro-huatron",
         "topic": "708",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Cabo Cruz",
         "db": "cabocruz-varoos",
         "topic": "710",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Bayamo",
         "db": "bayamo-thies",
         "topic": "712",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Santiago de Las Vengas",
         "db": "santiagodelasvegas-nesa",
         "topic": "714",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Melena del Sur",
         "db": "melenadelsur-nesa",
         "topic": "716",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Jaguey Grande",
         "db": "jagueygrande-huatron",
         "topic": "718",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Lucrecia",
         "db": "lucrecia-varoos",
         "topic": "720",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Puerto Padre",
         "db": "puertopadre-sutron",
         "topic": "722",
-        "offset": 10
+        "offset": 20
     },
     
     {
         "name": "Cayo Santa María",
         "db": "cayosantamaria-sutron",
         "topic": "724",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Florida",
         "db": "florida-huatron",
         "topic": "726",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Esmeralda",
         "db": "esmeralda-huatron",
         "topic": "728",
-        "offset": 10
+        "offset": 20
     },
     {
         "name": "Camilo Cienfuegos",
         "db": "camilocienfuegos-thies",
         "topic": "730",
-        "offset": 10
+        "offset": 20
     }
 ]
