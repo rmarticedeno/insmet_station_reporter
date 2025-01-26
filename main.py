@@ -4,9 +4,9 @@ from src.utils import getMaxValueReport, getMinValueReport, getMeanValueReport
 
 threads = []
 
-def make_report(db_name, topicId):
+def make_report(db_name, topicId, minutes_offset):
     try:
-        offset = datetime.timedelta(hours=5,minutes=10)
+        offset = datetime.timedelta(hours=5,minutes=minutes_offset)
         difference = datetime.datetime.utcnow() - offset
         sqltime = difference.strftime('%Y-%m-%d %H:%M:%S')
 
@@ -24,7 +24,7 @@ with open('stations.json', encoding='UTF-8') as f:
     stations = json.load(f)
 
 for x in stations:
-    make_report(x["db"], x["topic"])
+    make_report(x["db"], x["topic"], x["offset"])
 
 for t in threads:
     t.start()

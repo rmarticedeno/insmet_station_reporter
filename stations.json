@@ -2,11 +2,13 @@
     {
         "name": "Casablanca",
         "db": "casablanca-huatron-2022",
-        "topic": "15"
+        "topic": "15",
+        "offset": 20
     },
     {
         "name": "Varadero",
         "db": "varadero-thies",
-        "topic": "24"
+        "topic": "24",
+        "offset": 10
     }
 ]
