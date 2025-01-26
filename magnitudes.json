@@ -25,11 +25,6 @@
         "Unit": "hPa"
     },
     {
-        "Id": 6,
-        "Name": "Radiación solar",
-        "Unit": "W/m²"
-    },
-    {
         "Id": 7,
         "Name": "Precipitación",
         "Unit": "mm"
