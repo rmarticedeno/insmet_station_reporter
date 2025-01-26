@@ -28,7 +28,7 @@ def checkValidity(cursor, type):
     value = cursor.fetchall()[0]
     
     offset = datetime.timedelta(hours=5)
-    difference = datetime.datetime.now(datetime.timezone.utc) - offset - value.last_user_update
+    difference = datetime.datetime.utcnow() - offset - value.last_user_update
 
     return difference.seconds < 60
     offset = datetime.timedelta(hours=5)
