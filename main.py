@@ -8,10 +8,12 @@ def make_report(db_name, topicId):
     try:
         offset = datetime.timedelta(hours=5,minutes=10)
         difference = datetime.datetime.utcnow() - offset
+        sqltime = difference.strftime('%Y-%m-%d %H:%M:%S')
+        print(sqltime)
 
-        max = threading.Thread(target=getMaxValueReport, args=(db_name, topicId, difference,))
-        mean = threading.Thread(target=getMeanValueReport, args=(db_name, topicId, difference,))
-        min = threading.Thread(target=getMinValueReport, args=(db_name, topicId, difference,))
+        max = threading.Thread(target=getMaxValueReport, args=(db_name, topicId, sqltime,))
+        mean = threading.Thread(target=getMeanValueReport, args=(db_name, topicId, sqltime,))
+        min = threading.Thread(target=getMinValueReport, args=(db_name, topicId, sqltime,))
 
         threads.append(max)
         threads.append(min)

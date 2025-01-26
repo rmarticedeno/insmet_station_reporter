@@ -36,7 +36,6 @@ def getMaxValueReport(db: str, topicId: str, time: datetime.datetime):
 SELECT Value, CurrentTime, MagnitudeId
 FROM dbo.MaxValue
 WHERE CurrentTime > '{time}'
-)
 """
     getReportValues(db, topicId, query, 'Valores Máximos')
 
@@ -45,7 +44,6 @@ def getMinValueReport(db: str, topicId: str, time: datetime.datetime):
 SELECT Value, CurrentTime, MagnitudeId
 FROM dbo.MinValue
 WHERE CurrentTime > '{time}'
-)
 """
     getReportValues(db, topicId, query, 'Valores Mínimos')
 
@@ -55,6 +53,5 @@ def getMeanValueReport(db: str, topicId: str, time: datetime.datetime):
 SELECT Value, EndTime, MagnitudeId
 FROM dbo.MeanValue
 WHERE EndTime > '{time}'
-)
 """
     getReportValues(db, topicId, query, 'Valores Promedio')
