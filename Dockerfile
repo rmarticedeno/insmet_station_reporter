@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY install_driver.sh .
 
-run apk add curl gpg && ./install_driver.sh
+run apk add curl gpg && chmod +x install_driver.sh && ./install_driver.sh
 
 COPY requirements.txt .
 
