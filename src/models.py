@@ -29,3 +29,6 @@ class Report:
         magnitude = [x for x in self.magnitudes if x.id == id]
         if len(magnitude) > 0:
             magnitude[0].value = value
+
+    def isempty(self):
+        return not any([x.value is not None for x in self.magnitudes])

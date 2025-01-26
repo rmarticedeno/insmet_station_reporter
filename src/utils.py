@@ -28,7 +28,8 @@ def getReportValues(db: str, topicId: str, query: str, report_name: str):
     for r in records:
         report.update_magnitude(r.MagnitudeId, r.Value)
 
-    PostTelegramMessage(str(report), topicId)
+    if not report.isempty():
+        PostTelegramMessage(str(report), topicId)
 
 def getMaxValueReport(db: str, topicId: str, time: datetime.datetime):
 
