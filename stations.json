@@ -1,6 +1,12 @@
-{
-    "Casablanca":{
+[
+    {
+        "name": "Casablanca",
         "db": "casablanca-huatron-2022",
         "topic": "15"
+    },
+    {
+        "name": "Varadero",
+        "db": "varadero-thies",
+        "topic": "24"
     }
-}
+]
