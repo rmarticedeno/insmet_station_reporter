@@ -13,5 +13,5 @@ services:
     restart: always
     labels:
       ofelia.enabled: "true"
-      ofelia.job-exec.reporting.schedule: "0 3,13,23,33,43,53 * * * *"
+      ofelia.job-exec.reporting.schedule: "0 1,11,21,31,41,51 * * * *"
       ofelia.job-exec.reporting.command: 'python main.py'

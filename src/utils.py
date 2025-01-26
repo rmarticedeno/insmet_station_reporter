@@ -30,37 +30,31 @@ def getReportValues(db: str, topicId: str, query: str, report_name: str):
 
     PostTelegramMessage(str(report), topicId)
 
-def getMaxValueReport(db: str, topicId: str):
+def getMaxValueReport(db: str, topicId: str, time: datetime.datetime):
 
-    query = """
+    query = f"""
 SELECT Value, CurrentTime, MagnitudeId
 FROM dbo.MaxValue
-WHERE CurrentTime = (
-    SELECT MAX(CurrentTime)
-    FROM dbo.MaxValue
+WHERE CurrentTime > '{time}'
 )
 """
     getReportValues(db, topicId, query, 'Valores Máximos')
 
-def getMinValueReport(db: str, topicId: str):
+def getMinValueReport(db: str, topicId: str, time: datetime.datetime):
     query = """
 SELECT Value, CurrentTime, MagnitudeId
 FROM dbo.MinValue
-WHERE CurrentTime = (
-    SELECT MAX(CurrentTime)
-    FROM dbo.MinValue
+WHERE CurrentTime > '{time}'
 )
 """
     getReportValues(db, topicId, query, 'Valores Mínimos')
 
-def getMeanValueReport(db: str, topicId: str):
+def getMeanValueReport(db: str, topicId: str, time: datetime.datetime):
 
     query = """
 SELECT Value, EndTime, MagnitudeId
 FROM dbo.MeanValue
-WHERE EndTime = (
-    SELECT MAX(EndTime)
-    FROM dbo.MeanValue
+WHERE EndTime > '{time}'
 )
 """
     getReportValues(db, topicId, query, 'Valores Promedio')

@@ -1,14 +1,17 @@
 
-import threading, json
+import threading, json, datetime
 from src.utils import getMaxValueReport, getMinValueReport, getMeanValueReport
 
 threads = []
 
 def make_report(db_name, topicId):
     try:
-        max = threading.Thread(target=getMaxValueReport, args=(db_name, topicId,))
-        mean = threading.Thread(target=getMeanValueReport, args=(db_name, topicId,))
-        min = threading.Thread(target=getMinValueReport, args=(db_name, topicId,))
+        offset = datetime.timedelta(hours=5,minutes=10)
+        difference = datetime.datetime.utcnow() - offset
+
+        max = threading.Thread(target=getMaxValueReport, args=(db_name, topicId, difference,))
+        mean = threading.Thread(target=getMeanValueReport, args=(db_name, topicId, difference,))
+        min = threading.Thread(target=getMinValueReport, args=(db_name, topicId, difference,))
 
         threads.append(max)
         threads.append(min)
