@@ -2,7 +2,9 @@ FROM python:3.11-alpine
 
 WORKDIR /app
 
-RUN apk add --no-cache gcc libc-dev unixodbc-dev build-base
+COPY install_driver.sh .
+
+run apk add curl gpg && ./install_driver.sh
 
 COPY requirements.txt .
 

@@ -19,14 +19,14 @@ def getConnectionString(db:str):
     return f'DRIVER={{ODBC Driver 18 for SQL Server}};SERVER={ADDR};DATABASE={db};UID={USER};PWD={PASS};TrustServerCertificate=yes'
 
 def checkValidityMaxandMin(row):
-    row_date = datetime.datetime.strptime(row.CurrentTime, '%y-%m-%d %H:%M:%S')
-    difference = datetime.datetime.now() - row_date
+    offset = datetime.timedelta(hours=5)
+    difference = datetime.datetime.utcnow() - offset - row.CurrentTime
 
     return difference.seconds < 60
 
 def checkValidityforMean(row):
-    row_date = datetime.datetime.strptime(row.EndTime, '%y-%m-%d %H:%M:%S')
-    difference = datetime.datetime.now() - row_date
+    offset = datetime.timedelta(hours=5)
+    difference = datetime.datetime.utcnow() - offset - row.EndTime
     
     return difference.seconds < 60
 
@@ -57,10 +57,9 @@ WHERE CurrentTime = (
     FROM dbo.MaxValue
 )
 """
-    getReportValues(db, topicId, query, 'Valores Máximos', checkValidityforMean)
+    getReportValues(db, topicId, query, 'Valores Máximos', checkValidityMaxandMin)
 
 def getMinValueReport(db: str, topicId: str):
-
     query = """
 SELECT Value, CurrentTime, MagnitudeId
 FROM dbo.MinValue
