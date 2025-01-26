@@ -8,8 +8,6 @@ COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
-COPY install_driver.sh .
-
 COPY . .
 
 RUN chmod +x main.py
