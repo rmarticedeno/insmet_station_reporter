@@ -12,14 +12,14 @@ class Magnitude:
         self.min = min
 
     def __str__(self):
-        base = f"{self.name} ({self.unit}): "
+        base = f"{self.name}:"
         if self.min is not None:
-            base += f"m:{self.min} "
+            base += f"\nMínimo: {self.min} {self.unit}"
         if self.mean is not None:
-            base += f"p:{self.mean} "
+            base += f"\nPromedio: {self.mean} {self.unit}"
         if self.max is not None:
-            base += f"M:{self.max}"
-        return base
+            base += f"\nMáximo: {self.max} {self.unit}"
+        return base + '\n'
     
     def isemtpy(self):
         return self.mean is None and self.min is None and self.max is None
