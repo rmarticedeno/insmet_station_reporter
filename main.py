@@ -1,6 +1,6 @@
 
 import threading, json, datetime
-from src.utils import getMaxValueReport, getMinValueReport, getMeanValueReport
+from src.utils import jointReport
 
 threads = []
 
@@ -10,13 +10,9 @@ def make_report(db_name, topicId, minutes_offset):
         difference = datetime.datetime.utcnow() - offset
         sqltime = difference.strftime('%Y-%m-%d %H:%M:%S')
 
-        max = threading.Thread(target=getMaxValueReport, args=(db_name, topicId, sqltime,))
-        mean = threading.Thread(target=getMeanValueReport, args=(db_name, topicId, sqltime,))
-        min = threading.Thread(target=getMinValueReport, args=(db_name, topicId, sqltime,))
-
-        threads.append(max)
-        threads.append(min)
-        threads.append(mean)
+        t = threading.Thread(target=jointReport, args=(db_name, topicId, sqltime,))
+        threads.append(t)
+        
     except Exception as e:
         print(e)
 

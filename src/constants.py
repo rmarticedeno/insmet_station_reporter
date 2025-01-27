@@ -1,0 +1,3 @@
+MIN=1
+MEAN=2
+MAX=3

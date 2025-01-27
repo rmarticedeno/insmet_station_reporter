@@ -2,6 +2,7 @@ import os, pyodbc, datetime
 from requests import post
 from dotenv import load_dotenv
 from src.models import *
+from src.constants import *
 
 load_dotenv()
 
@@ -18,41 +19,42 @@ def PostTelegramMessage(message: str, topic_id: str = None):
 def getConnectionString(db:str):
     return f'DRIVER={{ODBC Driver 18 for SQL Server}};SERVER={ADDR};DATABASE={db};UID={USER};PWD={PASS};TrustServerCertificate=yes'
 
-def getReportValues(db: str, topicId: str, query: str, report_name: str):
-    report = Report(report_name)
-
+def updateReportValues(report: Report, db: str, query: str, type: int):
     conn = pyodbc.connect(getConnectionString(db))
     cursor = conn.cursor()
     cursor.execute(query)
     records = cursor.fetchall()
     for r in records:
-        report.update_magnitude(r.MagnitudeId, r.Value)
+        report.update_magnitude(r.MagnitudeId, r.Value, type)
 
-    if not report.isempty():
-        PostTelegramMessage(str(report), topicId)
+def jointReport(db: str, topicId: str, time: datetime.datetime):
 
-def getMaxValueReport(db: str, topicId: str, time: datetime.datetime):
+    # Queries
 
-    query = f"""
-SELECT Value, CurrentTime, MagnitudeId
-FROM dbo.MaxValue
-WHERE CurrentTime > '{time}'
-"""
-    getReportValues(db, topicId, query, 'Valores Máximos')
-
-def getMinValueReport(db: str, topicId: str, time: datetime.datetime):
-    query = f"""
+    queryMin = f"""
 SELECT Value, CurrentTime, MagnitudeId
 FROM dbo.MinValue
 WHERE CurrentTime > '{time}'
 """
-    getReportValues(db, topicId, query, 'Valores Mínimos')
-
-def getMeanValueReport(db: str, topicId: str, time: datetime.datetime):
-
-    query = f"""
+    
+    queryMean = f"""
 SELECT Value, EndTime, MagnitudeId
 FROM dbo.MeanValue
 WHERE EndTime > '{time}'
 """
-    getReportValues(db, topicId, query, 'Valores Promedio')
+
+    queryMax = f"""
+SELECT Value, CurrentTime, MagnitudeId
+FROM dbo.MaxValue
+WHERE CurrentTime > '{time}'
+"""
+    # report
+    report = Report()
+
+    # update values
+    updateReportValues(report, db, queryMin, MIN)
+    updateReportValues(report, db, queryMean, MEAN)
+    updateReportValues(report, db, queryMax, MAX)
+
+    if not report.isempty():
+        PostTelegramMessage(str(report), topicId)
